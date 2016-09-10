@@ -12,7 +12,7 @@ describe('generator-angulatool:app', function () {
 
   it('creates files', function () {
     assert.file([
-      'src/server/index.js'
+      'app/src/server/index.js'
     ]);
   });
 });

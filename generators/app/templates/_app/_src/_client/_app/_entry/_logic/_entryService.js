@@ -1,7 +1,7 @@
+const EntryService = function () {
+
+};
+
 angular
   .module('app')
-  .service('EntryService', EntryService);
-
-function EntryService () {
-
-}
+  .factory('EntryService', EntryService);

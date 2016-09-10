@@ -1,6 +1,6 @@
-function EntryController () {
+const EntryController = function () {
 
-}
+};
 
 var opt = {
   template: '',
