@@ -12,7 +12,9 @@ var coveralls = require('gulp-coveralls');
 gulp.task('static', function () {
   return gulp.src('**/*.js')
     .pipe(excludeGitignore())
-    .pipe(eslint())
+    .pipe(eslint({
+      configFile: 'eslint.json'
+    }))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
