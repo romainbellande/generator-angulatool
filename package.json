@@ -50,6 +50,7 @@
     "ecmaVersion": 6,
     "env": {
       "mocha": true
-    }
+    },
+    "useEslintrc": true
   }
 }

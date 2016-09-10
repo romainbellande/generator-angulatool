@@ -3,6 +3,3 @@ node_js:
   - v6
   - v5
   - v4
-env:
-  - SH=bash
-  - PACKAGE_VERSION="1.0.*"
