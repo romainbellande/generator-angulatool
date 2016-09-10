@@ -3,6 +3,5 @@
   "env": {
     "mocha": true,
     "es6": true
-  },
-  "useEslintrc": true
+  }
 }
