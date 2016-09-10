@@ -1,0 +1,27 @@
+doctype html
+html(ng-app='app')
+  head
+    title Angular gulp preprocessors starter-kit
+    // build:css bundle.css
+    // bower:css
+    // endbower
+    // inject:vendor:css
+    // endinject
+    // inject:css
+    // endinject
+    // endbuild
+  body
+    ui-view
+    // build:js bundle.js
+    // bower:js
+    // endbower
+    script(src='vendor/prelude-ls/prelude-ls.min.js')
+    // inject:vendor:js
+    // endinject
+    script(src='app/core/app.modules.js')
+    script(src='app/core/app.setup.js')
+    script(src='app/core/app.routes.js')
+    script(src='app/core/app.constants.js')
+    // inject:js
+    // endinject
+    // endbuild

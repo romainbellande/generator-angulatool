@@ -51,8 +51,8 @@ module.exports = generators.Base.extend({
 
     app: function () {
       this.fs.copy(
-        this.templatePath('_src/_server/_index.js'),
-        this.destinationPath('src/server/index.js')
+        this.templatePath('_app/_src/_server/_index.js'),
+        this.destinationPath('app/src/server/index.js')
       );
     }
   },
