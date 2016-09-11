@@ -47,12 +47,66 @@ module.exports = generators.Base.extend({
         this.templatePath('bowerrc'),
         this.destinationPath('.bowerrc')
       );
+
+      this.fs.copy(
+        this.templatePath('_eslint.json'),
+        this.destinationPath('eslint.json')
+      );
+
+      this.fs.copy(
+        this.templatePath('gitignore'),
+        this.destinationPath('.gitignore')
+      );
     },
 
-    app: function () {
+    gulp: function () {
+      this.fs.copy(
+        this.templatePath('_gulpfile.js'),
+        this.destinationPath('gulpfile.js')
+      );
+
+      this.fs.copy(
+        this.templatePath('_gulp/_lint/_lint.js'),
+        this.destinationPath('gulp/lint/lint.js')
+      );
+
+      this.fs.copy(
+        this.templatePath('_gulp/_compile/_babel/_compileBabel.js'),
+        this.destinationPath('gulp/compile/babel/compileBabel.js')
+      );
+
+      this.fs.copy(
+        this.templatePath('_gulp/_compile/_jade/_compileJade.js'),
+        this.destinationPath('gulp/compile/jade/compileJade.js')
+      );
+
+      this.fs.copy(
+        this.templatePath('_gulp/_compile/_stylus/_compileStylus.js'),
+        this.destinationPath('gulp/compile/stylus/compileStylus.js')
+      );
+
+      this.fs.copy(
+        this.templatePath('_gulp/_compile/_compile.js'),
+        this.destinationPath('gulp/compile/compile.js')
+      );
+
+      this.fs.copy(
+        this.templatePath('_gulp/_dogen/_dogen.js'),
+        this.destinationPath('gulp/dogen/dogen.js')
+      );
+    },
+
+    server: function () {
       this.fs.copy(
         this.templatePath('_app/_src/_server/_index.js'),
         this.destinationPath('app/src/server/index.js')
+      );
+    },
+
+    client: function () {
+      this.fs.copy(
+        this.templatePath('_app/_src/_client/_index.jade'),
+        this.destinationPath('app/src/client/index.jade')
       );
     }
   },

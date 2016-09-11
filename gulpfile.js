@@ -10,7 +10,7 @@ var plumber = require('gulp-plumber');
 var coveralls = require('gulp-coveralls');
 
 gulp.task('static', function () {
-  return gulp.src('**/*.js')
+  return gulp.src(['!**/dogen/templates/**/*.js', '**/*.js'])
     .pipe(excludeGitignore())
     .pipe(eslint({
       configFile: 'eslint.json'
@@ -24,7 +24,7 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src('generators/**/*.js')
+  return gulp.src(['!generators/**/dogen/templates/**/*.js', 'generators/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(istanbul({
       includeUntested: true

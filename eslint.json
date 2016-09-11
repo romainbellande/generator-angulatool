@@ -1,7 +1,10 @@
 {
-  "extends": ["xo-space", "angular"],
+  "extends": ["xo-space"],
   "env": {
     "mocha": true,
     "es6": true
+  },
+  "globals": {
+    "angular": true
   }
 }

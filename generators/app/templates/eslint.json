@@ -1,0 +1,7 @@
+{
+  "extends": ["xo-space", "angular"],
+  "env": {
+    "mocha": true,
+    "es6": true
+  }
+}
