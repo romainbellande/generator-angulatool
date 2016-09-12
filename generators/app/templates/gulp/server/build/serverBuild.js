@@ -2,9 +2,7 @@
   'use strict';
 
   var gulp = require('gulp');
-  var nodemon = require('gulp-nodemon');
-  var livereload = require('gulp-livereload');
-  var notify = require('gulp-notify');
+  var gls = require('gulp-live-server');
   var path = require('path');
   var baseDir = '../../../';
 
@@ -16,15 +14,12 @@
 
   var serverBuild = function () {
     gulp.task('server-build', function () {
-      livereload.listen();
-      nodemon({
-        script: getPath('app/build/server/index.js'),
-        watch: getPath('app/build/')
-      }).on('restart', function () {
-        gulp.src(getPath('app/build/server/index.js'))
-        .pipe(livereload())
-        .pipe(notify('Reloading page, please wait...'));
+      var server = gls.new(getPath('app/build/server/index.js'));
+      server.start();
+      gulp.watch(getPath('app/build/**'), function (file) {
+        server.notify.apply(server, [file]);
       });
+      gulp.watch(getPath('app/build/server/index.js'), server.start.bind(server));
     });
   };
 
