@@ -2,9 +2,11 @@
   'use strict';
 
   var gulp = require('gulp');
-  var nodemon = require('gulp-nodemon');
+  var gls = require('gulp-live-server');
+  var runSequence = require('run-sequence');
+  var open = require('gulp-open');
   var path = require('path');
-  var baseDir = '../../';
+  var baseDir = '../../../';
 
   var currentPath = path.join(__dirname, baseDir);
 
@@ -13,16 +15,19 @@
   };
 
   var serverDist = function () {
-    gulp.task('server-dist', function (cb) {
-      var started = false;
-      return nodemon({
-        script: getPath('app/dist/server/index.js')
-      }).on('start', function () {
-        if (!started) {
-          cb();
-          started = true;
-        }
-      });
+    gulp.task('server-dist-live', function () {
+      var server = gls.new(getPath('app/dist/server/index.js'));
+      server.start();
+    });
+
+    gulp.task('server-dist-open', function () {
+      gulp.src('.').pipe(open({
+        uri: 'http://127.0.0.1:3000'
+      }));
+    });
+
+    gulp.task('server-dist', function () {
+      runSequence('server-dist-live', 'server-dist-open');
     });
   };
 
