@@ -18,14 +18,14 @@
     gulp.task('inject-html', function () {
       return gulp.src(getPath('app/src/client/components/**/*Component.js'))
       .pipe(inject(
-        gulp.src('components/**/*.html', {cwd: getPath('app/build/client')}),
+        gulp.src('**/*View.html', {cwd: getPath('app/build/client/components')}),
         {
           relative: true,
           starttag: 'template: \'',
           endtag: '\'',
-          transform: function (filePath, file) {
-            if (filePath.indexOf('../render') === 0) {
-              console.log('[template injected]: ' + filePath.split('../render/')[1]);
+          transform: function (filePath, file, i, length, targetFile) {
+            if (filePath.split('/')[filePath.split('/').length - 3] === targetFile.path.split('/')[targetFile.path.split('/').length - 3]) {
+              console.log('[template injected]: ' + filePath.split('/')[filePath.split('/').length - 1]);
               return escape(minifyHtmlInput(file.contents.toString('utf-8'), {collapseWhitespace: true, preventAttributesEscaping: true}));
             }
           }

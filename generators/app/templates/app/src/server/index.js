@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const http = require('http');
+const livereload = require('connect-livereload');
 
 let app = express();
 
@@ -14,6 +15,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 app.use(cors());
+
+app.use(livereload());
 
 app.use(express.static(path.join(__dirname, '../client')));
 
