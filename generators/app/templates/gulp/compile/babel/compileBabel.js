@@ -3,38 +3,53 @@
   var gulp = require('gulp');
   var babel = require('gulp-babel');
   var sourcemaps = require('gulp-sourcemaps');
+  var path = require('path');
+  var baseDir = '../../../';
+  var currentPath = path.join(__dirname, baseDir);
+
+  var getPath = function (_path) {
+    return currentPath + _path;
+  };
 
   var compileBabel = function () {
-    gulp.task('compile-babel', function () {
-      return gulp.src('./app/src/**/*.js')
+    gulp.task('compile-babel-common', function () {
+      return gulp.src(['!' + getPath('app/src/**/*Spec.js'), getPath('app/src/**/*.js')])
       .pipe(sourcemaps.init())
       .pipe(babel({
         presets: ['es2015']
       }))
       .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest('./app/build/'));
+      .pipe(gulp.dest(getPath('app/build/')));
     });
 
     gulp.task('compile-babel-client-spec', function () {
-      return gulp.src('./app/src/client/**/*Spec.js')
+      return gulp.src(getPath('app/src/client/**/*Spec.js'))
       .pipe(sourcemaps.init())
       .pipe(babel({
         presets: ['es2015']
       }))
       .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest('./test/app/client/'));
+      .pipe(gulp.dest(getPath('test/app/client/')));
     });
 
     gulp.task('compile-babel-server-spec', function () {
-      return gulp.src('./app/src/server/**/*Spec.js')
+      return gulp.src(getPath('app/src/server/**/*Spec.js'))
       .pipe(sourcemaps.init())
       .pipe(babel({
         presets: ['es2015']
       }))
       .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest('./test/app/server/'));
+      .pipe(gulp.dest(getPath('test/app/server/')));
     });
 
-    module.exports = compileBabel;
+    gulp.task('compile-babel', ['compile-babel-common', 'compile-babel-client-spec', 'compile-babel-server-spec']);
+
+    gulp.task('compile-babel-watch', function () {
+      gulp.watch(['!' + getPath('app/src/**/*Spec.js'), getPath('app/src/**/*.js')], ['compile-babel-common']);
+      gulp.watch(getPath('app/src/client/**/*Spec.js'), ['compile-babel-client-spec']);
+      gulp.watch(getPath('app/src/server/**/*Spec.js'), ['compile-babel-server-spec']);
+    });
   };
+
+  module.exports = compileBabel;
 })();

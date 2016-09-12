@@ -8,5 +8,5 @@ var opt = {
 };
 
 angular
-  .module('app')
+  .module('app.components')
   .component('_component_', opt);

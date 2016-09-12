@@ -11,7 +11,7 @@
       gulp: gulp
     });
 
-    gulpDogen.task('component', path.join(__dirname, '/app/src/client/components/'));
+    gulpDogen.task('component', path.join(__dirname, '../../app/src/client/components/'));
   };
 
   module.exports = dogen;
