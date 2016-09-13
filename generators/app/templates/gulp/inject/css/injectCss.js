@@ -18,7 +18,7 @@
       .pipe(
         inject(
           gulp.src(
-            ['!lib/**', '**/*.css'], {cwd: getPath('app/build/client')}
+            ['!./lib/**', '!./doc/**', '**/*.css'], {cwd: getPath('app/build/client')}
           ),
           {
             addRootSlash: false

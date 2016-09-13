@@ -18,7 +18,7 @@
       return gulp.src(getPath('app/build/client/index.html'))
       .pipe(
         inject(gulp.src(
-          ['!./lib/**', '!**/*Spec.js', '**/*.js'], {cwd: getPath('app/build/client')}
+          ['!./lib/**', '!./doc/**', '!**/*Spec.js', '**/*.js'], {cwd: getPath('app/build/client')}
         )
         .pipe(angularFilesort()),
           {
