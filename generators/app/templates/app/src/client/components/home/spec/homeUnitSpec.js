@@ -1,5 +1,5 @@
 (() => {
-  describe('component: _component_', () => {
+  describe('component: home', () => {
     let $componentController;
     let element;
     let scope;
@@ -7,13 +7,13 @@
     beforeEach(module('app.components'));
     beforeEach(inject(($rootScope, $compile) => {
       scope = $rootScope.$new();
-      element =  angular.element('<_component_></_component_>');
+      element =  angular.element('<home></home>');
       element = $compile(element)(scope);
       scope.$apply();
     }));
 
     it('exist', () => {
-      expect(element.html().indexOf('_component_')).toBeGreaterThan(-1);
+      expect(element.html().indexOf('home')).toBeGreaterThan(-1);
     });
   });
 })();

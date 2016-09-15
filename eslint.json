@@ -1,13 +1,17 @@
 {
   "extends": ["xo-space"],
   "rules": {
-    "no-useless-call": 1
+    "no-useless-call": "warn",
+    "no-use-before-define": "off"
   },
   "env": {
     "mocha": true,
     "es6": true
   },
   "globals": {
-    "angular": true
+    "angular": true,
+    "expect": true,
+    "inject": true,
+    "scope": true
   }
 }

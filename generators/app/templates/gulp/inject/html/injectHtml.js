@@ -5,6 +5,8 @@
   var inject = require('gulp-inject');
   var minifyHtmlInput = require('html-minifier').minify;
   var escape = require('js-string-escape');
+
+  var compileBabel = require('../../compile/babel/compileBabel');
   var path = require('path');
   var baseDir = '../../../';
 
@@ -14,9 +16,11 @@
     return currentPath + _path;
   };
 
+  compileBabel();
+
   var injectHtml = function () {
     gulp.task('inject-html', function () {
-      return gulp.src(getPath('app/src/client/components/**/*Component.js'))
+      return gulp.src(getPath('app/build/client/components/**/*Component.js'))
       .pipe(inject(
         gulp.src('**/*View.html', {cwd: getPath('app/build/client/components')}),
         {
@@ -24,7 +28,7 @@
           starttag: 'template: \'',
           endtag: '\'',
           transform: function (filePath, file, i, length, targetFile) {
-            if (filePath.split('/')[filePath.split('/').length - 3] === targetFile.path.split('/')[targetFile.path.split('/').length - 3]) {
+            if (filePath.indexOf('../render') === 0) {
               console.log('[template injected]: ' + filePath.split('/')[filePath.split('/').length - 1]);
               return escape(minifyHtmlInput(file.contents.toString('utf-8'), {collapseWhitespace: true, preventAttributesEscaping: true}));
             }

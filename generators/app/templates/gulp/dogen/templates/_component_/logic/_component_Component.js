@@ -1,12 +1,15 @@
-function =component=Controller () {
+(() => {
+  const =component=Controller = function () {
 
-}
+  };
 
-var opt = {
-  template: '',
-  controller: =component=Controller
-};
+  angular
+    .module('app.components')
+    .component('_component_', {
+      template: '',
+      controller: =component=Controller
+    }
+  );
+})();
 
-angular
-  .module('app.components')
-  .component('_component_', opt);
+

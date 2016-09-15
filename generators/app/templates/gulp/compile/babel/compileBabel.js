@@ -12,8 +12,18 @@
   };
 
   var compileBabel = function () {
+    gulp.task('compile-babel-server', function () {
+      return gulp.src(getPath('app/src/server/index.js'))
+      .pipe(sourcemaps.init())
+      .pipe(babel({
+        presets: ['es2015']
+      }))
+      .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest(getPath('app/build/server/')));
+    });
+
     gulp.task('compile-babel-common', function () {
-      return gulp.src(['!' + getPath('app/src/**/*Spec.js'), getPath('app/src/**/*.js')])
+      return gulp.src(['!' + getPath('app/src/server/index.js'), '!' + getPath('app/src/**/*Spec.js'), getPath('app/src/**/*.js')])
       .pipe(sourcemaps.init())
       .pipe(babel({
         presets: ['es2015']
@@ -42,7 +52,7 @@
       .pipe(gulp.dest(getPath('test/app/server/')));
     });
 
-    gulp.task('compile-babel', ['compile-babel-common', 'compile-babel-client-spec', 'compile-babel-server-spec']);
+    gulp.task('compile-babel', ['compile-babel-server', 'compile-babel-common', 'compile-babel-client-spec', 'compile-babel-server-spec']);
 
     gulp.task('compile-babel-watch', function () {
       gulp.watch(['!' + getPath('app/src/**/*Spec.js'), getPath('app/src/**/*.js')], ['compile-babel-common']);

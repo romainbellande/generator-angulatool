@@ -1,12 +1,14 @@
-const RootController = function () {
+(() => {
+  const RootController = () => {
 
-};
+  };
 
-var opt = {
-  template: '',
-  controller: RootController
-};
+  angular
+    .module('app.components')
+    .component('root', {
+      template: '',
+      controller: RootController
+    }
+  );
+})();
 
-angular
-  .module('app.components')
-  .component('root', opt);

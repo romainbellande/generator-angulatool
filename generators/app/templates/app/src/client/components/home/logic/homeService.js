@@ -1,7 +1,10 @@
-const HomeService = function () {
+(() => {
+  const HomeService = () => {
 
-};
+  };
 
-angular
-  .module('app')
-  .factory('HomeService', HomeService);
+  angular
+    .module('app.services')
+    .factory('HomeService', HomeService);
+})();
+

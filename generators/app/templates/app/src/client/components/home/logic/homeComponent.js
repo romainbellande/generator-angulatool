@@ -1,12 +1,12 @@
-const HomeController = function () {
+(() => {
+  const HomeController = () => {
+  };
 
-};
-
-var opt = {
-  template: '',
-  controller: HomeController
-};
-
-angular
-  .module('app.components')
-  .component('home', opt);
+  angular
+    .module('app.components')
+    .component('home', {
+      template: '',
+      controller: HomeController
+    }
+  );
+})();

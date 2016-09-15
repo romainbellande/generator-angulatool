@@ -1,7 +1,10 @@
-angular
-  .module('app')
-  .service('=component=Service', =component=Service);
+(() => {
+  const =component=Service = function () {
 
-function =component=Service () {
+  };
 
-}
+  angular
+    .module('app')
+    .factory('=component=Service', =component=Service);
+})();
+

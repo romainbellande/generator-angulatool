@@ -1,7 +1,10 @@
-const RootService = function () {
+(() => {
+  const RootService = function () {
 
-};
+  };
 
-angular
-  .module('app')
-  .factory('RootService', RootService);
+  angular
+    .module('app.services')
+    .factory('RootService', RootService);
+})();
+
