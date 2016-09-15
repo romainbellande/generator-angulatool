@@ -1,13 +1,12 @@
 (() => {
   describe('component: root', () => {
-    let $componentController;
     let element;
     let scope;
 
     beforeEach(module('app.components'));
     beforeEach(inject(($rootScope, $compile) => {
       scope = $rootScope.$new();
-      element =  angular.element('<root></root>');
+      element = angular.element('<root></root>');
       element = $compile(element)(scope);
       scope.$apply();
     }));

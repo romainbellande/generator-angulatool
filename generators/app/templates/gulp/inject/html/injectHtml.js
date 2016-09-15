@@ -27,7 +27,7 @@
           relative: true,
           starttag: 'template: \'',
           endtag: '\'',
-          transform: function (filePath, file, i, length, targetFile) {
+          transform: function (filePath, file) {
             if (filePath.indexOf('../render') === 0) {
               console.log('[template injected]: ' + filePath.split('/')[filePath.split('/').length - 1]);
               return escape(minifyHtmlInput(file.contents.toString('utf-8'), {collapseWhitespace: true, preventAttributesEscaping: true}));
