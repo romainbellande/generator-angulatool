@@ -21,7 +21,7 @@
       return mongoose.model(self.name, self.schema);
     }
 
-    name() {
+    getName() {
       return self.name;
     }
   }

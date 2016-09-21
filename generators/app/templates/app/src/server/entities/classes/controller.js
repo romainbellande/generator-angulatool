@@ -10,7 +10,7 @@
     }
 
     response(data) {
-      return {data};
+      return data;
     }
 
     get(req, res, next) {
@@ -28,7 +28,7 @@
     getById(req, res, next) {
       self.model
       .get()
-      .findById(req.params[`${self.model.name()}_id`], null, (err, entity) => {
+      .findById(req.params[`${self.model.getName()}_id`], null, (err, entity) => {
         if (err) {
           return next(err);
         }
@@ -54,7 +54,7 @@
     put(req, res, next) {
       self.model
       .get()
-      .findById(req.body[`${self.model.name()}_id`], (err, entity) => {
+      .findById(req.params[`${self.model.getName()}_id`], (err, entity) => {
         for (let key of Object.keys(req.body)) {
           entity[key] = req.body[key];
         }
@@ -72,7 +72,7 @@
       self.model
       .get()
       .remove({
-        _id: req.body[`${self.model.name()}_id`]
+        _id: req.params[`${self.model.getName()}_id`]
       }, err => {
         if (err) {
           return next(err);
