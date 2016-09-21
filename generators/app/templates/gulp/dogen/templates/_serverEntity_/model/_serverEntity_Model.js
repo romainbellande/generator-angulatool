@@ -1,5 +1,11 @@
 (() => {
   const Model = require('../../classes/model');
-  const _serverEntity_Model = new Model ('_serverEntity_', {});
-  module.exports = _serverEntity_Model;
+
+  class =serverEntity=Model extends Model {
+    constructor (name, opt) {
+      super(name, opt);
+    }
+  }
+
+  module.exports = new =serverEntity=Model('_serverEntity_', {});
 })();
