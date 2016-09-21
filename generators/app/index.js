@@ -42,6 +42,12 @@ module.exports = generators.Base.extend({
           name: this.props.name
         }
       );
+      this.fs.copyTpl(
+        this.templatePath('app/src/server/_config.js'),
+        this.destinationPath('app/src/server/config.js'), {
+          name: this.props.name
+        }
+      );
 
       this.fs.copy(
         this.templatePath('_bowerrc'),
@@ -55,7 +61,7 @@ module.exports = generators.Base.extend({
         this.destinationPath('.'),
         {
           globOptions: {
-            ignore: ['_*', '**/_*']
+            ignore: ['_*']
           }
         }
       );

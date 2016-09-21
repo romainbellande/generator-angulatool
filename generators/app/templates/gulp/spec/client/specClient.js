@@ -18,7 +18,7 @@
   var specClient = function (done) {
     gulp.task('spec-client', function () {
       new KarmaServer({
-        configFile: getPath('test/config/unit/karmaUnitConf.js'),
+        configFile: getPath('test/config/unit/client/karmaUnitClient.js'),
         singleRun: true
       }, done).start();
     });

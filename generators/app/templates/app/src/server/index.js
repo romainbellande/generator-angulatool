@@ -1,26 +1,9 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const cors = require('cors');
 const http = require('http');
-const livereload = require('connect-livereload');
+const app = require('./app');
 
-let app = express();
+const entities = require('./entities/entities');
 
-app.use(bodyParser.json());
-
-app.use(bodyParser.urlencoded({extended: false}));
-
-app.use(cookieParser());
-
-app.use(cors());
-
-app.use(livereload());
-
-app.use(express.static(path.join(__dirname, '../client')));
+entities();
 
 let server = http.createServer(app);
 server.listen(3000);
-
-module.exports = app;

@@ -2,7 +2,12 @@
   "extends": ["xo-space"],
   "rules": {
     "no-useless-call": "warn",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "new-cap": "warn",
+    "no-unused-vars": "off",
+    "array-callback-return": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }]
+
   },
   "env": {
     "mocha": true,

@@ -12,6 +12,7 @@
     });
 
     gulpDogen.task('component', path.join(__dirname, '../../app/src/client/components/'));
+    gulpDogen.task('serverEntity', path.join(__dirname, '../../app/src/server/entities/'));
   };
 
   module.exports = dogen;
