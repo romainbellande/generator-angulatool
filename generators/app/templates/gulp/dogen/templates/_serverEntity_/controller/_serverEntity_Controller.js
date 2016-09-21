@@ -3,8 +3,8 @@
   const _serverEntity_Model = require('../model/_serverEntity_Model');
 
   class =serverEntity=Controller extends Controller {
-    constructor (model) {
-      super(model);
+    constructor (name, model) {
+      super(name, model);
     }
   }
 

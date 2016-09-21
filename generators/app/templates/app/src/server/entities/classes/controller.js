@@ -9,11 +9,11 @@
       self.model = model;
     }
 
-    _getResponse(data) {
+    response(data) {
       return {data};
     }
 
-    _get(req, res, next) {
+    get(req, res, next) {
       self.model
       .get()
       .find((err, entity) => {
@@ -21,37 +21,64 @@
           return next(err);
         }
 
-        res.json(self._getResponse(entity));
+        res.json(self.response(entity));
       });
     }
 
-    get(req, res, next) {
-      self._get(req, res, next);
-    }
-
     getById(req, res, next) {
-      this.getById();
-      res.send('ok');
+      self.model
+      .get()
+      .findById(req.params[`${self.model.name()}_id`], null, (err, entity) => {
+        if (err) {
+          return next(err);
+        }
+
+        res.json(self.response(entity));
+      });
     }
 
     post(req, res, next) {
-      this.post();
-      res.send('ok');
+      let entity = new self.model.get();
+      for (let key of Object.keys(req.body)) {
+        entity[key] = req.body[key];
+      }
+      entity.save((err, entity) => {
+        if (err) {
+          return next(err);
+        }
+
+        res.json(self.response(entity));
+      });
     }
 
     put(req, res, next) {
-      this.put();
-      res.send('ok');
+      self.model
+      .get()
+      .findById(req.body[`${self.model.name()}_id`], (err, entity) => {
+        for (let key of Object.keys(req.body)) {
+          entity[key] = req.body[key];
+        }
+        entity.save((err, entity) => {
+          if (err) {
+            return next(err);
+          }
+
+          res.json(self.response(entity));
+        });
+      });
     }
 
     delete(req, res, next) {
-      this.delete();
-      res.send('ok');
-    }
-
-    update(req, res, next) {
-      this.update();
-      res.send('ok');
+      self.model
+      .get()
+      .remove({
+        _id: req.body[`${self.model.name()}_id`]
+      }, err => {
+        if (err) {
+          return next(err);
+        }
+        res.status(200).end();
+      });
     }
   }
 

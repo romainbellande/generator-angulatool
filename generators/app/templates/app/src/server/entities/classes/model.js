@@ -4,18 +4,25 @@
   const mongoose = require('mongoose');
   const Schema = mongoose.Schema;
 
+  let self;
+
   class Model {
     constructor(name, opt) {
-      this.schema = new Schema(opt);
-      this.name = name;
+      self = this;
+      self.schema = new Schema(opt);
+      self.name = name;
     }
 
     getSchema() {
-      return this.schema;
+      return self.schema;
     }
 
     get() {
-      return mongoose.model(this.name, this.schema);
+      return mongoose.model(self.name, self.schema);
+    }
+
+    name() {
+      return self.name;
     }
   }
 
